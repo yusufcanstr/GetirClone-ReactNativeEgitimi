@@ -19,7 +19,7 @@ export default function RootNavigator() {
           borderWidth: 2,
           borderRadius: 35,
           justifyContent: "center",
-          marginTop: -14,
+          marginTop: -25,
           alignItems: "center",
           backgroundColor: "#5C3EBC",
           width: 70,
@@ -41,7 +41,7 @@ export default function RootNavigator() {
         tabBarInactiveTintColor: "#959595",
         headerShown: false,
         tabBarStyle: {
-          height: 70,
+          height:70,
         },
       }}
     >

@@ -9,15 +9,18 @@ import {
 import React from "react";
 import { Entypo } from "@expo/vector-icons";
 import { Product } from "../../models";
+import { useNavigation } from "@react-navigation/native";
 
 const { width, height } = Dimensions.get("window");
 
 type productItemType = {
-    item: Product
-}
-export default function index({item}:productItemType) {
+  item: Product;
+};
+export default function index({ item }: productItemType) {
+  const navigation = useNavigation();
   return (
     <TouchableOpacity
+      onPress={() => navigation.navigate("ProductDetails", { product: item })}
       style={{
         width: width * 0.28,
         marginTop: 12,
@@ -49,7 +52,8 @@ export default function index({item}:productItemType) {
             textDecorationLine: "line-through",
           }}
         >
-          <Text>₺</Text>{item.fiyat}
+          <Text>₺</Text>
+          {item.fiyat}
         </Text>
         <Text
           style={{
@@ -59,7 +63,8 @@ export default function index({item}:productItemType) {
             marginLeft: 4,
           }}
         >
-          <Text>₺</Text>{item.fiyatIndirimli}
+          <Text>₺</Text>
+          {item.fiyatIndirimli}
         </Text>
       </View>
       <Text style={{ fontSize: 12, fontWeight: "600", marginTop: 5 }}>
@@ -89,8 +94,8 @@ export default function index({item}:productItemType) {
           right: -6,
           top: -6,
           borderRadius: 6,
-          shadowRadius:3.8,
-          shadowOpacity:0.08,
+          shadowRadius: 3.8,
+          shadowOpacity: 0.08,
         }}
       >
         <Entypo name="plus" size={22} color="#5D3EBD" />
