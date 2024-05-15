@@ -1,4 +1,11 @@
-import { StyleSheet, Image, Text, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Image,
+  Text,
+  View,
+  TouchableOpacity,
+  Dimensions,
+} from "react-native";
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "../screens/HomeScreen";
@@ -11,6 +18,7 @@ import {
 } from "@react-navigation/native";
 
 const Stack = createNativeStackNavigator();
+const { width, height } = Dimensions.get("window");
 
 function MyStack({ navigation, route }) {
   const tabHiddenRoutes = "ProductDetails";
@@ -52,6 +60,34 @@ function MyStack({ navigation, route }) {
             <Text style={{ fontWeight: "bold", fontSize: 17, color: "white" }}>
               Ürünler
             </Text>
+          ),
+          headerRight: () => (
+            <TouchableOpacity
+              style={{
+                width: width * 0.22,
+                height: 35,
+                backgroundColor: "white",
+                marginRight: width * 0.03,
+                borderRadius: 9,
+                flexDirection: "row",
+                alignItems:"center",
+              }}
+            >
+              <Image
+                style={{
+                  width: 23,
+                  height: 23,
+                  marginLeft:6,
+                }}
+                source={require("../../assets/cart.png")}
+              />
+              <View style={{height:33, width:3, backgroundColor:"white"}}/>
+              <View style={{flex:1,justifyContent:"center", alignItems:"center",height:33,backgroundColor:"#F3EFFE",borderTopRightRadius:9, borderBottomRightRadius:9}}>
+                <Text style={{color:"#5D3EBD", fontWeight:"bold", fontSize:12,}}>
+                  <Text>{"\u20BA"}</Text>24,00
+                </Text>
+              </View>
+            </TouchableOpacity>
           ),
         }}
       />
