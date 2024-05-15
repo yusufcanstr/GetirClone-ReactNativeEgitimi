@@ -11,6 +11,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "../screens/HomeScreen";
 import CategoryFilterScreen from "../screens/CategoryFilterScreen";
 import ProductDetailsScreen from "../screens/ProductDetailsScreen";
+import CartScreen from "../screens/CartScreen";
 import { Ionicons, FontAwesome } from "@expo/vector-icons";
 import {
   useNavigation,
@@ -55,6 +56,7 @@ function MyStack({ navigation, route }) {
         options={{
           headerTintColor: "white",
           headerBackTitleVisible: false,
+          headerTitleAlign: "center",
           headerStyle: { backgroundColor: "#5C3EBC" },
           headerTitle: () => (
             <Text style={{ fontWeight: "bold", fontSize: 17, color: "white" }}>
@@ -63,6 +65,7 @@ function MyStack({ navigation, route }) {
           ),
           headerRight: () => (
             <TouchableOpacity
+              onPress={() => navigation.navigate("CartScreen")}
               style={{
                 width: width * 0.22,
                 height: 35,
@@ -70,20 +73,34 @@ function MyStack({ navigation, route }) {
                 marginRight: width * 0.03,
                 borderRadius: 9,
                 flexDirection: "row",
-                alignItems:"center",
+                alignItems: "center",
               }}
             >
               <Image
                 style={{
                   width: 23,
                   height: 23,
-                  marginLeft:6,
+                  marginLeft: 6,
                 }}
                 source={require("../../assets/cart.png")}
               />
-              <View style={{height:33, width:3, backgroundColor:"white"}}/>
-              <View style={{flex:1,justifyContent:"center", alignItems:"center",height:33,backgroundColor:"#F3EFFE",borderTopRightRadius:9, borderBottomRightRadius:9}}>
-                <Text style={{color:"#5D3EBD", fontWeight:"bold", fontSize:12,}}>
+              <View
+                style={{ height: 33, width: 3, backgroundColor: "white" }}
+              />
+              <View
+                style={{
+                  flex: 1,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  height: 33,
+                  backgroundColor: "#F3EFFE",
+                  borderTopRightRadius: 9,
+                  borderBottomRightRadius: 9,
+                }}
+              >
+                <Text
+                  style={{ color: "#5D3EBD", fontWeight: "bold", fontSize: 12 }}
+                >
                   <Text>{"\u20BA"}</Text>24,00
                 </Text>
               </View>
@@ -97,7 +114,8 @@ function MyStack({ navigation, route }) {
         options={{
           headerTintColor: "white",
           headerBackTitleVisible: false,
-
+          headerBackVisible: false,
+          headerTitleAlign: "center",
           headerStyle: { backgroundColor: "#5C3EBC" },
           headerLeft: () => (
             <TouchableOpacity
@@ -122,6 +140,35 @@ function MyStack({ navigation, route }) {
               Ürün Detayı
             </Text>
           ),
+        }}
+      />
+      <Stack.Screen
+        name="CartScreen"
+        component={CartScreen}
+        options={{
+          headerTintColor: "#white",
+          headerBackTitleVisible: false,
+          headerBackVisible: false,
+          headerTitleAlign: "center",
+          headerTitle: () => (
+            <Text style={{ fontWeight: "bold", fontSize: 15, color: "white" }}>
+              Sepetim
+            </Text>
+          ),
+          headerLeft: () => (
+            <TouchableOpacity
+              //style={{ paddingLeft: 4 }}
+              onPress={() => navigation.goBack()}
+            >
+              <Ionicons name="close" size={26} color="white" />
+            </TouchableOpacity>
+          ),
+          headerRight: () => (
+            <TouchableOpacity>
+              <Ionicons name="trash-sharp" size={24} color="white" />
+            </TouchableOpacity>
+          ),
+          headerStyle: { backgroundColor: "#5C3EBC" },
         }}
       />
     </Stack.Navigator>
