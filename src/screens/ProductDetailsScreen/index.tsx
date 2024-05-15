@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Product } from "../../models";
 import ImageCarousel from "../../components/ImageCarousel";
 import DetailBox from "../../components/DetailBox";
+import DetailProperty from "../../components/DetailProperty";
 
 export default function index(props) {
   const [product, setProduct] = useState<Product>();
@@ -20,8 +21,18 @@ export default function index(props) {
     <View>
       <ImageCarousel images={product.images} />
       <DetailBox price={product.fiyat} name={product.name} quantity={product.miktar}/>
+      <Text style={styles.txtDetay}>Detaylar</Text>
+      <DetailProperty />
     </View>
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  txtDetay:{
+    paddingHorizontal: 10,
+    paddingVertical: 14,
+    color:"#808b99",
+    fontWeight: "600",
+
+  },
+});
